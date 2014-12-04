@@ -48,7 +48,7 @@ def evaluateRuntime(individual):
     print 'Vector of particles: ', vector_s
     print "Game starts.. "
     start_time = time.time()
-    os.system("./run.sh %s %s" % (threads,vector_s))
+    os.system("sh run.sh %s %s" % (threads,vector_s))
     print "end"
     return (time.time() - start_time),
 
