@@ -31,7 +31,7 @@ def evaluateMemory(individual):
     print 'Number of buffered particles: ', nbuff
     print "Game starts.. "
   #insert what to measure & how
-    os.system("./run_mod.sh %s %s" % (nbuff,threads))
+    os.system("sh run_mod.sh %s %s" % (nbuff,threads))
     print "end"
   #insert return
     return ,
@@ -50,19 +50,19 @@ def main():
     stats.register("avg", numpy.mean)
     stats.register("min", numpy.min)
     stats.register("max", numpy.max)
-
+    stats.register("std", numpy.std)
     pop, logbook = algorithms.eaSimple(pop, toolbox, cxpb=0.5, mutpb=0.2, ngen=5, stats=stats, halloffame=hof, verbose=True)
-
     return pop, logbook, hof
 
 if __name__ == "__main__":
     pop, log, hof = main()
     print("Best individual is: %s\nwith fitness: %s" % (hof[0], hof[0].fitness))
-    gen, avg, min_, max_ = log.select("gen", "avg", "min", "max")
-    plt.plot(gen, avg, label="average")
-    plt.plot(gen, min_, label="minimum")
-    plt.plot(gen, max_, label="maximum")
-    plt.xlabel("Generation")
-    plt.ylabel("Fitness")
-    plt.legend(loc="lower right")
-    plt.savefig("plot.png", dpi=200)
+    gen, avg, min_, max_, std= log.select("gen", "avg", "min", "max","std")
+    plt.plot(avg, gen, label="average")
+    plt.plot(min_, gen, label="minimum")
+    plt.plot(max_, gen, label="maximum")
+    plt.plot(std, gen, label="deviation")	
+    plt.xlabel("Fitness")
+    plt.ylabel("Generation")
+    plt.legend(loc="lower left")
+    plt.savefig("plot_mem.png", dpi=200)
