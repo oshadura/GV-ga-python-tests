@@ -1,6 +1,8 @@
 import subprocess, os, time, random,resource
 import matplotlib.pyplot as plt
 import numpy
+import ROOT
+from ROOT import *
 
 from deap import base
 from deap import creator
@@ -18,6 +20,13 @@ toolbox.register("individual", tools.initRepeat, creator.Individual,
     toolbox.attr_bool, 12)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
+def getMem():
+    info = ROOT.ProcInfo_t()
+    ROOT.gSystem.GetProcInfo(info);
+    mem = float(info.fMemResident)
+    return mem*1e-3
+
+
 def evaluateMemory(individual):
     a = individual[0:4]
     b = individual[4:12]
@@ -25,16 +34,16 @@ def evaluateMemory(individual):
     nbuff = int(''.join(str(i) for i in b),2)
     if threads == 0:
       threads = 16
-    if nbuff == 0 then
-      nbuff = 
+    if nbuff == 0:
+      nbuff = 200
     print 'Number of threads: ', threads
     print 'Number of buffered particles: ', nbuff
     print "Game starts.. "
-  #insert what to measure & how
-    os.system("sh run_mod.sh %s %s" % (nbuff,threads))
+    mem_start = getMem()
+    os.system("sh run_mem.sh %s %s" % (threads, nbuff))
+    mem_end = getMem()
     print "end"
-  #insert return
-    return ,
+    return (mem_end - mem_start),
 
 # Operator registering
 toolbox.register("evaluate", evaluateMemory)
