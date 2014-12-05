@@ -50,7 +50,7 @@ void run(Int_t nthreads=4,
    gSystem->GetMemInfo(&memInfo);
    Int_t memRes1=procInfo.fMemResident; 
    Int_t memVirt1=procInfo.fMemVirtual;
-   Int_t mem = memRes1-memRes0
+   Int_t mem = memRes1-memRes0;
    cout << " Typical memory for handling one correction:" << endl;
    cout << " Resident Memory = " << mem << endl; 
    cout << " Virtual Memory = " << memVirt1-memVirt0 << endl; 
