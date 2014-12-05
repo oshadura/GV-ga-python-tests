@@ -1,4 +1,4 @@
-void run(Int_t nthreads=4,
+Int_t run(Int_t nthreads=4,
          Int_t nbuff = 10,
          Bool_t graphics=kFALSE,
 	 const char *geomfile="ExN03.root",
@@ -50,9 +50,8 @@ void run(Int_t nthreads=4,
    gSystem->GetMemInfo(&memInfo);
    Int_t memRes1=procInfo.fMemResident; 
    Int_t memVirt1=procInfo.fMemVirtual;
-   Int_t mem = memRes1-memRes0;
    cout << " Typical memory for handling one correction:" << endl;
-   cout << " Resident Memory = " << mem << endl; 
+   cout << " Resident Memory = " << memRes1 -memRes0 << endl; 
    cout << " Virtual Memory = " << memVirt1-memVirt0 << endl; 
    cout << " Ending " << endl;
    cout << " *-------------------------------------* " << endl;
@@ -62,5 +61,5 @@ void run(Int_t nthreads=4,
    cout << " Resident Memory = " << procInfo.fMemResident << endl; 
    cout << " Virtual Memory = " << procInfo.fMemVirtual << endl; 
    cout << " *-------------------------------------* " << endl;
-   return mem;
+   return (memRes1 - memRes0);
 }   
