@@ -38,8 +38,8 @@ def evaluateMemory(individual):
     print 'Number of threads: ', threads
     print 'Number of buffered particles: ', nbuff
     print "Game starts.. "
-    check_mem = ROOT.gROOT.Macro('run.C($threads\,$nbuff\,false,"/data/geant/workspace/Testing_GeantV/label/olwork21/vecprot_v2/ExN03.root","/data/geant/workspace/Testing_GeantV/label/olwork21/vecprot_v2/xsec_FTFP_BERT_G496p02.root","/data/geant/workspace/Testing_GeantV/label/olwork21/vecprot_v2/fstate_FTFP_BERT_G496p02.root")')
-    #os.system("sh run_mem.sh %s %s" % (threads, nbuff))
+    check_mem = ROOT.gROOT.Macro('run.C(%s,%s,false,"/data/geant/workspace/Testing_GeantV/label/olwork21/vecprot_v2/ExN03.root","/data/geant/workspace/Testing_GeantV/label/olwork21/vecprot_v2/xsec_FTFP_BERT_G496p02.root","/data/geant/workspace/Testing_GeantV/label/olwork21/vecprot_v2/fstate_FTFP_BERT_G496p02.root")' % (threads,nbuff)) 
+    #os.system("sh run_mem.sh %s %s" % (threads, nbuff)) 
     print ("Memory usage: %s" % (check_mem))
     print "End"
     return check_mem,

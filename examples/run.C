@@ -1,7 +1,6 @@
 void run(Int_t nthreads=4,
          Int_t nbuff = 10,
          Bool_t graphics=kFALSE,
-	 Int_t mem = 0,
 	 const char *geomfile="ExN03.root",
 	 const char *xsec="xsec_FTFP_BERT_G496p02.root",
 	 const char *fstate="fstate_FTFP_BERT_G496p02.root")
