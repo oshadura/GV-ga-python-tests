@@ -1,6 +1,7 @@
 import subprocess, os, time, random,resource
 import matplotlib.pyplot as plt
 import numpy
+import os, subprocess
 import ROOT
 from ROOT import *
 
@@ -38,8 +39,9 @@ def evaluateMemory(individual):
     print 'Number of threads: ', threads
     print 'Number of buffered particles: ', nbuff
     print "Game starts.. "
-    check_mem = ROOT.gROOT.Macro('run.C(%s,%s,false,"/data/geant/workspace/Testing_GeantV/label/olwork21/vecprot_v2/ExN03.root","/data/geant/workspace/Testing_GeantV/label/olwork21/vecprot_v2/xsec_FTFP_BERT_G496p02.root","/data/geant/workspace/Testing_GeantV/label/olwork21/vecprot_v2/fstate_FTFP_BERT_G496p02.root")' % (threads,nbuff)) 
-    #os.system("sh run_mem.sh %s %s" % (threads, nbuff)) 
+    mem = subprocess.Popen(ROOT.gROOT.Macro('run.C(%s,%s,false,"/data/geant/workspace/Testing_GeantV/label/olwork21/vecprot_v2/ExN03.root","/data/geant/workspace/Testing_GeantV/label/olwork21/vecprot_v2/xsec_FTFP_BERT_G496p02.root","/data/geant/workspace/Testing_GeantV/label/olwork21/vecprot_v2/fstate_FTFP_BERT_G496p02.root")' % (threads,nbuff)),shell=TRUE)
+    mem_check = proc.communicate()
+    #os.system("sh run_mem.sh %s %s" % (threads, nbuff))
     print ("Memory usage: %s" % (check_mem))
     print "End"
     return check_mem,
@@ -69,7 +71,7 @@ if __name__ == "__main__":
     plt.plot(avg, gen, label="average")
     plt.plot(min_, gen, label="minimum")
     plt.plot(max_, gen, label="maximum")
-    plt.plot(std, gen, label="deviation")	
+    plt.plot(std, gen, label="deviation")
     plt.xlabel("Fitness")
     plt.ylabel("Generation")
     plt.legend(loc="lower left")
