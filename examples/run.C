@@ -14,18 +14,18 @@ Int_t run(Int_t nthreads=4,
    gSystem->Load("../lib/libXsec");
    CpuInfo_t  cpuInfo;
    MemInfo_t  memInfo;
-   ProcInfo_t procInfo;
+   ProcInfo_t procInfo;  
    gSystem->GetCpuInfo(&cpuInfo, 10);
    gSystem->GetMemInfo(&memInfo);
    gSystem->GetProcInfo(&procInfo);
    cout << " BEGINNING " << endl;
-   cout << " Mem Total = " << memInfo.fMemTotal << endl;
-   cout << " Mem Used = " << memInfo.fMemUsed << endl;
-   cout << " Mem Swapped = " << memInfo.fSwapUsed << endl;
-   cout << " Resident Memory = " << procInfo.fMemResident << endl;
-   cout << " Virtual Memory = " << procInfo.fMemVirtual << endl;
-   Int_t memRes0=procInfo.fMemResident;
-   Int_t memVirt0=procInfo.fMemVirtual;
+   cout << " Mem Total = " << memInfo.fMemTotal << endl; 
+   cout << " Mem Used = " << memInfo.fMemUsed << endl; 
+   cout << " Mem Swapped = " << memInfo.fSwapUsed << endl; 
+   cout << " Resident Memory = " << procInfo.fMemResident << endl; 
+   cout << " Virtual Memory = " << procInfo.fMemVirtual << endl; 
+   Int_t memRes0=procInfo.fMemResident; 
+   Int_t memVirt0=procInfo.fMemVirtual; 
    Int_t ntotal   = 20;  // Number of events to be transported
    Int_t nbuffered  = nbuff;   // Number of buffered events
    TGeoManager::Import(geomfile);
@@ -41,25 +41,25 @@ Int_t run(Int_t nthreads=4,
    prop->fProcess = new TTabPhysProcess("tab_phys", xsec, fstate);
    prop->fPrimaryGenerator = new GunGenerator(prop->fNaverage, 11, prop->fEmax, -8, 0, 0, 1, 0, 0);
    prop->fApplication = new MyApplication();
-// gROOT->ProcessLine(".x factory.C+");
+// gROOT->ProcessLine(".x factory.C+");   
 // prop->fUseDebug = kTRUE;
 // prop->fDebugTrk = 1;
    prop->fUseMonitoring = graphics;
    prop->PropagatorGeom(geomfile, nthreads, graphics);
    gSystem->GetProcInfo(&procInfo);
    gSystem->GetMemInfo(&memInfo);
-   Int_t memRes1=procInfo.fMemResident;
+   Int_t memRes1=procInfo.fMemResident; 
    Int_t memVirt1=procInfo.fMemVirtual;
    cout << " Typical memory for handling one correction:" << endl;
-   cout << " Resident Memory = " << memRes1 -memRes0 << endl;
-   cout << " Virtual Memory = " << memVirt1-memVirt0 << endl;
+   cout << " Resident Memory = " << memRes1 -memRes0 << endl; 
+   cout << " Virtual Memory = " << memVirt1-memVirt0 << endl; 
    cout << " Ending " << endl;
    cout << " *-------------------------------------* " << endl;
-   cout << " Mem Total = " << memInfo.fMemTotal << endl;
-   cout << " Mem Used = " << memInfo.fMemUsed << endl;
-   cout << " Mem Swapped = " << memInfo.fSwapUsed << endl;
-   cout << " Resident Memory = " << procInfo.fMemResident << endl;
-   cout << " Virtual Memory = " << procInfo.fMemVirtual << endl;
+   cout << " Mem Total = " << memInfo.fMemTotal << endl; 
+   cout << " Mem Used = " << memInfo.fMemUsed << endl; 
+   cout << " Mem Swapped = " << memInfo.fSwapUsed << endl; 
+   cout << " Resident Memory = " << procInfo.fMemResident << endl; 
+   cout << " Virtual Memory = " << procInfo.fMemVirtual << endl; 
    cout << " *-------------------------------------* " << endl;
    return (memRes1 - memRes0);
-}
+}   
